@@ -10,7 +10,7 @@ interface MjmlComponentProperties {
 }
 
 
-function loadFromLocalStorage(mjmlContent: string): void {
+function storeInLocalStorage(mjmlContent: string): void {
   const localStorageKey = `${LocalStoragePrefix}html`;
   localStorage.removeItem(localStorageKey);
   localStorage.setItem(localStorageKey, JSON.stringify(mjmlContent)); // im still not sure if this needs to be json stringified
@@ -41,7 +41,7 @@ function addSaveButtonBehavior(editor: grapesjs.Editor) {
 const MJMLComponent = ({ mjmlContent, editorConfig }: MjmlComponentProperties) => {
 
   useEffect(() => {
-    loadFromLocalStorage(mjmlContent);
+    storeInLocalStorage(mjmlContent);
     let editor = grapesjs.init(editorConfig);
     addSaveButtonBehavior(editor);
   });
